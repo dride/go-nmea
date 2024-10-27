@@ -1,6 +1,6 @@
 module github.com/adrianmo/go-nmea
 
-go 1.14
+go 1.22.7
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
