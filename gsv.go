@@ -32,7 +32,7 @@ type GSV struct {
 // GSVInfo represents information about a visible satellite
 type GSVInfo struct {
 	SVPRNNumber int64 // SV PRN number, pseudo-random noise or gold code
-	Elevation   int64 // Elevation in degrees, 90 maximum
+	Elevation   float64 // Elevation in degrees, 90 maximum
 	Azimuth     int64 // Azimuth, degrees from true north, 000 to 359
 	SNR         int64 // SNR, 00-99 dB (null when not tracking)
 }
@@ -54,7 +54,7 @@ func newGSV(s BaseSentence) (Sentence, error) {
 		}
 		m.Info = append(m.Info, GSVInfo{
 			SVPRNNumber: p.Int64(3+i*4, "SV prn number"),
-			Elevation:   p.Int64(4+i*4, "elevation"),
+			Elevation:   p.Float64(4+i*4, "elevation"),
 			Azimuth:     p.Int64(5+i*4, "azimuth"),
 			SNR:         p.Int64(6+i*4, "SNR"),
 		})
