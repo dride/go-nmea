@@ -34,7 +34,7 @@ type GSVInfo struct {
 	SVPRNNumber int64 // SV PRN number, pseudo-random noise or gold code
 	Elevation   float64 // Elevation in degrees, 90 maximum
 	Azimuth     float64 // Azimuth, degrees from true north, 000 to 359
-	SNR         int64 // SNR, 00-99 dB (null when not tracking)
+	SNR         float64 // SNR, 00-99 dB (null when not tracking)
 }
 
 // newGSV constructor
@@ -56,7 +56,7 @@ func newGSV(s BaseSentence) (Sentence, error) {
 			SVPRNNumber: p.Int64(3+i*4, "SV prn number"),
 			Elevation:   p.Float64(4+i*4, "elevation"),
 			Azimuth:     p.Float64(5+i*4, "azimuth"),
-			SNR:         p.Int64(6+i*4, "SNR"),
+			SNR:         p.Float64(6+i*4, "SNR"),
 		})
 	}
 	idxSID := (6 + (i-1)*4) + 1
